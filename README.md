@@ -3,7 +3,7 @@ ATS Sample
 
 **ATS Sample** is a simplified test solution manager. It's an alternative to [AnyPackageCore](https://github.com/Aravent/AnyPackageCore).
 
-![demo](http://i.imgur.com/DtxNBJi.gif)
+![demo](doc/demo.png)
 
 Features
 --------
