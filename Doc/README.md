@@ -37,9 +37,9 @@ Testing Studio Sample 的构建考虑了可扩展性，从仪器驱动到数据�
 如果您对扩展包程序开发有疑问，请创建issue进行提问。
 如果您迫切想得到回复，请发送邮件至[zlxu@aiofm.ac.cn](mailto://zlxu@aiofm.ac.cn)我将尽快恢复您的问题。
 
----
-
 5/13/2020
+
+---
 
 # 入门
 
@@ -99,11 +99,11 @@ Testing Studio Sample 的构建考虑了可扩展性，从仪器驱动到数据�
 
 ### 使用扩展
 
-本部分包括有助于您开发高质量TS Samplee扩展的主题。例如，您可以学习
+本部分包括有助于您开发高质量TS Sample扩展的主题。例如，您可以学习
 
 * 如何为您的扩展添加[集成测试]()
 * 如何[将扩展发布]()到APC Extension Marketplace
-*如何为您的扩展程序设置持续集成
+* 如何为您的扩展程序设置持续集成
 
 ### 扩展能力
 
@@ -113,19 +113,319 @@ Testing Studio Sample 的构建考虑了可扩展性，从仪器驱动到数据�
 
 我们提供了大量示例扩展，您可以从中进行调整，其中一些示例包含详细的指南以解释源代码。您可以在扩展指南列表或[apc-extension-samples]()存储库中找到所有示例和指南。
 
+5/19/2020
+
+---
+
 # 使用扩展包
+
+5/13/2020
+
+---
 
 # 扩展接口
 
-样品	VS Code网站指南	API和贡献
-|  接口名   | 接口名称  | 功能 | 参数 |
-|  ----  | ----  | ---- | ---- |
-| PushData  | 推送数据 | 追加注册数据,推送数据,推送参数,推送配置 | [Int]():传入的PID,[PushData]():推送的数据信息 |
-| PushNotice  | 推送消息 | 推送系统通知信息,推送内部通知 | [Int]():传入的PID,[PushNotice]():推送的通知信息 |
-| PushState  | 推送状态 | 向状态栏推送状态 | [Int]():传入的PID,[String]():推送的状态 |
+## 综述
+
+在TS Sample中，扩展包利用扩展接口与框架进行数据交换，为此我们定义了以下四种数据交换的方式：
+|名称|方向|继承&调用|方法|
+|---|---|---|---|
+|读取|框架 < 模块|ICore|[PushInfo]() [Init](#init)([IPush]() push)|
+|发送|框架 > 模块|ICore|void [Receive](#receive)([PushData]() pushData)|
+|获取|模块 < 框架|IPush|[MethodData]() [GetMethodList](#getMethodList)()<br>[ModuleData]() [GetDataList](#getDataList)()<br>object [GetData](#getData)(int pid, [PushType]() type, string name)|
+|推送|模块 > 框架|IPush|int [Pid](#pid) {get; set;}<br>void [PushData](#pushData)(int pid, [PushData]() pushData)<br>void [PushNotice](#pushNotice)(int pid, [PushNotice]() pushNotice)|
+
+## 属性
+
+### <a id="pid">PID 属性</a>
+
+#### 语法
+
+`public int Pid { get; set; }`
+
+#### 简介
+
+用于设置和获取注册扩展包的PID值，通常在Init(IPush push)方法中被引入。
+
+#### 示例
+
+```C#
+    private IPush Push;
+
+    public PushInfo Init(IPush push)
+    {
+        Push = push;
+        return null;
+    }
+
+    var pid = Push.Pid;
+```
+
+#### 另请参阅
+
+[System.Int32](https://docs.microsoft.com/zh-cn/dotnet/api/system.int32?view=netframework-4.6)
+
+## 方法
+
+### <a id="init">Init 方法</a>
+
+#### 语法
+
+`public PushInfo Init(IPush push);`
+
+#### 参数
+
+**return** [PushInfo]()
+
+扩展包向框架中注册的信息。
+
+**push** [IPush]()
+
+由框架传入的推送接口实例。
+
+#### 简介
+
+扩展包初始化。
+
+#### 示例
+
+```C#
+    private IPush Push;
+
+    public PushInfo Init(IPush push)
+    {
+        Push = push;
+        return null;
+    }
+
+    var pid = Push.Pid;
+```
+
+#### 另请参阅
+
+无
+
+### <a id="receive">Receive 方法</a>
+
+#### 语法
+
+`public void Receive(PushData query);`
+
+#### 参数
+
+**query** [PushData]()
+
+接收的数据。
+
+#### 简介
+
+扩展包数据接收。
+
+#### 示例
+
+```C#
+    public void Receive(PushData query)
+    {
+        switch (query.Type)
+        {
+            case PushType.Setting :
+                MessageBox.Show((string)query.Data[0].Value);
+                break;
+            default:
+                break;
+        }
+    }
+```
+
+#### 另请参阅
+
+[System.Void](https://docs.microsoft.com/zh-cn/dotnet/api/system.void?view=netframework-4.6)
+
+[System.String](https://docs.microsoft.com/zh-cn/dotnet/api/system.string?view=netframework-4.6)
+
+[System.Windows.MessageBox](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.messagebox?view=netframework-4.6)
+
+
+### <a id="getMethodList">GetMethodList 方法</a>
+
+#### 语法
+
+`public MethodData GetMethodList();`
+
+#### 参数
+
+**return** [MethodData]()
+
+读取的方法列表。
+
+#### 简介
+
+扩展包从框架中读取的全部注册方法列表。
+
+#### 示例
+
+```C#
+    var MethodList = IPush.GetMethodList();
+```
+
+#### 另请参阅
+
+无
+
+### <a id="getDataList">GetDataList 方法</a>
+
+#### 语法
+
+`public ModuleData GetDataList()`
+
+#### 参数
+
+**return** [ModuleData]()
+
+读取的数据列表。
+
+#### 简介
+
+扩展包从框架中读取的全部注册数据列表。
+
+#### 示例
+
+```C#
+    var DataList = IPush.GetDataList();
+```
+
+#### 另请参阅
+
+无
+
+### <a id="getData">GetData 方法</a>
+
+#### 语法
+
+`public object GetData(int pid, PushType type, string name);`
+
+#### 参数
+
+**return** [System.Object](https://docs.microsoft.com/zh-cn/dotnet/api/system.object?view=netframework-4.6)
+
+读取的数据值。
+
+**pid** [System.Int32](https://docs.microsoft.com/zh-cn/dotnet/api/system.int32?view=netframework-4.6)
+
+要读取数据所在扩展包Pid。
+
+**type** [PushType]()
+
+获取数据的类型。
+
+**name** [System.String](https://docs.microsoft.com/zh-cn/dotnet/api/system.string?view=netframework-4.6)
+
+获取数据的名称。
+
+#### 简介
+
+扩展包从框架中读取其他指定扩展包推送的数据。
+
+#### 示例
+
+```C#
+    var Data = IPush.GetData(1001, PushType.Setting, "isEnable");
+```
+
+#### 另请参阅
+
+[System.Object](https://docs.microsoft.com/zh-cn/dotnet/api/system.object?view=netframework-4.6)
+
+[System.Int32](https://docs.microsoft.com/zh-cn/dotnet/api/system.int32?view=netframework-4.6)
+
+[System.String](https://docs.microsoft.com/zh-cn/dotnet/api/system.string?view=netframework-4.6)
+
+### <a id="pushData">PushData 方法</a>
+
+#### 语法
+
+`public void PushData(int pid, PushData pushData);`
+
+#### 参数
+
+**pid** [System.Int32](https://docs.microsoft.com/zh-cn/dotnet/api/system.int32?view=netframework-4.6)
+
+本扩展包的Pid。
+
+**pushData** [PushData]()
+
+要推送的数据。
+
+#### 简介
+
+推送数据到框架。
+
+#### 示例
+
+```C#
+    var regData = new PushData
+    {
+        Type = PushType.RegData,
+        Data = dataInfos
+    };
+    Push.PushData(Push.Pid, regData);
+```
+
+#### 另请参阅
+
+[System.Int32](https://docs.microsoft.com/zh-cn/dotnet/api/system.int32?view=netframework-4.6)
+
+### <a id="pushNotice">PushNotice 方法</a>
+
+#### 语法
+
+`public void PushNotice(int pid, PushNotice pushNotice);`
+
+#### 参数
+
+**pid** [System.Int32](https://docs.microsoft.com/zh-cn/dotnet/api/system.int32?view=netframework-4.6)
+
+本扩展包的Pid。
+
+**pushNotice** [PushNotice]()
+
+要推送的通知。
+
+#### 简介
+
+向框架推送全局通知。
+
+#### 示例
+
+```C#
+    PushNotice notice = new PushNotice
+    { 
+        Module = "Example",
+        Title="TestNotice",
+        Msg = "Example System Notice.",
+        State = ToolTipIcon.Info
+    };
+    Push.PushNotice(Push.Pid, notice);
+```
+
+#### 另请参阅
+
+[System.Int32](https://docs.microsoft.com/zh-cn/dotnet/api/system.int32?view=netframework-4.6)
+
+## 类型
+
+## 枚举
 
 # UI扩展
 
+5/13/2020
+
+---
+
 # 数据交互
+
+5/13/2020
+
+---
 
 # 参考
