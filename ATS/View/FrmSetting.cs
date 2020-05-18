@@ -9,18 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DSkin.Forms;
 
-namespace ATS
+namespace ATS.View
 {
-    public partial class FrmAbout : DSkinForm
+    public partial class FrmSetting : DSkinForm
     {
-        public FrmAbout()
+        public FrmSetting()
         {
             InitializeComponent();
-        }
-
-        private void BtnOK_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.OK;
         }
     }
 }

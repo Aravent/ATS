@@ -1,4 +1,4 @@
-﻿namespace ATS
+﻿namespace ATS.View
 {
     partial class FrmMain
     {
@@ -74,6 +74,7 @@
             this.MinorToolBar = new DSkin.Controls.DSkinToolStrip();
             this.StripUDSeparation = new System.Windows.Forms.ToolStripButton();
             this.StripLRSeparation = new System.Windows.Forms.ToolStripButton();
+            this.dSkinTabPage1 = new DSkin.Controls.DSkinTabPage();
             this.MainMenu.SuspendLayout();
             this.MainStatus.SuspendLayout();
             this.MainDocker.SuspendLayout();
@@ -386,6 +387,7 @@
             this.MainDocker.CloseButton.PressColor = System.Drawing.Color.White;
             this.MainDocker.CloseButton.Size = new System.Drawing.Size(12, 12);
             this.MainDocker.Controls.Add(this.DockerPageDefault);
+            this.MainDocker.Controls.Add(this.dSkinTabPage1);
             this.MainDocker.EnabledCloseButton = true;
             this.MainDocker.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.MainDocker.HoverBackColors = new System.Drawing.Color[] {
@@ -450,9 +452,9 @@
             this.MainIcon.Image = ((System.Drawing.Image)(resources.GetObject("MainIcon.Image")));
             this.MainIcon.Images = new System.Drawing.Image[] {
         ((System.Drawing.Image)(((System.Drawing.Image)(resources.GetObject("MainIcon.Images")))))};
-            this.MainIcon.Location = new System.Drawing.Point(8, 6);
+            this.MainIcon.Location = new System.Drawing.Point(8, 7);
             this.MainIcon.Name = "MainIcon";
-            this.MainIcon.Size = new System.Drawing.Size(20, 20);
+            this.MainIcon.Size = new System.Drawing.Size(21, 21);
             this.MainIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.MainIcon.TabIndex = 0;
             this.MainIcon.Text = "dSkinPictureBox1";
@@ -637,6 +639,17 @@
             this.StripLRSeparation.Size = new System.Drawing.Size(23, 20);
             this.StripLRSeparation.Text = "左右拆分";
             // 
+            // dSkinTabPage1
+            // 
+            this.dSkinTabPage1.BackColor = System.Drawing.Color.White;
+            this.dSkinTabPage1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dSkinTabPage1.Location = new System.Drawing.Point(0, 30);
+            this.dSkinTabPage1.Name = "dSkinTabPage1";
+            this.dSkinTabPage1.Size = new System.Drawing.Size(1299, 691);
+            this.dSkinTabPage1.TabIndex = 3;
+            this.dSkinTabPage1.TabItemImage = null;
+            this.dSkinTabPage1.Text = "dSkinTabPage1";
+            // 
             // FrmMain
             // 
             this.AnimationType = DSkin.Forms.AnimationTypes.Custom;
@@ -662,6 +675,7 @@
             this.Controls.Add(this.MainDocker);
             this.Controls.Add(this.MainMenu);
             this.DrawIcon = false;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MainMenu;
             this.MaxBox.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
             this.MaxBox.HoverColor = System.Drawing.Color.White;
@@ -675,7 +689,7 @@
             this.MinBox.PressBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
             this.MinBox.PressColor = System.Drawing.Color.White;
             this.MinBox.Size = new System.Drawing.Size(45, 30);
-            this.MinimumSize = new System.Drawing.Size(740, 420);
+            this.MinimumSize = new System.Drawing.Size(800, 400);
             this.Name = "FrmMain";
             this.NormalBox.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
             this.NormalBox.HoverColor = System.Drawing.Color.White;
@@ -684,8 +698,10 @@
             this.NormalBox.PressColor = System.Drawing.Color.White;
             this.NormalBox.Size = new System.Drawing.Size(45, 30);
             this.RoundStyle = DSkin.Common.RoundStyle.None;
+            this.ShowShadow = true;
             this.Text = "FrmMain";
             this.Load += new System.EventHandler(this.FrmMain_Load);
+            this.Shown += new System.EventHandler(this.FrmMain_Shown);
             this.Resize += new System.EventHandler(this.FrmMain_Resize);
             this.MainMenu.ResumeLayout(false);
             this.MainMenu.PerformLayout();
@@ -748,5 +764,6 @@
         private System.Windows.Forms.ToolStripSeparator MenuSeparate7;
         private System.Windows.Forms.ToolStripMenuItem MenuAbout;
         private System.Windows.Forms.ToolStripMenuItem MenuWindow;
+        private DSkin.Controls.DSkinTabPage dSkinTabPage1;
     }
 }

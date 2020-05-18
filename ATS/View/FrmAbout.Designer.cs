@@ -1,4 +1,4 @@
-﻿namespace ATS
+﻿namespace ATS.View
 {
     partial class FrmAbout
     {
@@ -66,9 +66,9 @@
             this.dSkinLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.dSkinLabel1.Location = new System.Drawing.Point(30, 50);
             this.dSkinLabel1.Name = "dSkinLabel1";
-            this.dSkinLabel1.Size = new System.Drawing.Size(508, 18);
+            this.dSkinLabel1.Size = new System.Drawing.Size(466, 18);
             this.dSkinLabel1.TabIndex = 1;
-            this.dSkinLabel1.Text = "Aiofm Testing Studio Sample 2020 开发者预览版 (Developer Preview 1.0.172) 32位";
+            this.dSkinLabel1.Text = "Testing Studio Sample 2020 开发者预览版 (Developer Preview 1.0.172) 32位";
             // 
             // dSkinTextBox1
             // 
@@ -94,9 +94,9 @@
             this.dSkinLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
             this.dSkinLabel2.Location = new System.Drawing.Point(30, 74);
             this.dSkinLabel2.Name = "dSkinLabel2";
-            this.dSkinLabel2.Size = new System.Drawing.Size(135, 18);
+            this.dSkinLabel2.Size = new System.Drawing.Size(230, 18);
             this.dSkinLabel2.TabIndex = 3;
-            this.dSkinLabel2.Text = "构建日期：2020/05/13";
+            this.dSkinLabel2.Text = "内核版本：1.2.108 (Release 5/14/2020)";
             // 
             // dSkinLabel3
             // 
@@ -156,10 +156,9 @@
             this.MoveMode = DSkin.Forms.MoveModes.Title;
             this.Name = "FrmAbout";
             this.ShadowColor = System.Drawing.Color.DimGray;
-            this.ShadowWidth = 2;
             this.ShowInTaskbar = false;
             this.ShowShadow = true;
-            this.Text = "关于 Aiofm Testing Studio Sample 2020";
+            this.Text = "关于 Testing Studio Sample 2020";
             this.ResumeLayout(false);
             this.PerformLayout();
 

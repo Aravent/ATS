@@ -9,21 +9,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DSkin.Forms;
 
-namespace ATS
+namespace ATS.View
 {
-    public partial class FrmSplash : DSkinForm
+    public partial class FrmAbout : DSkinForm
     {
-        public FrmSplash()
+        public FrmAbout()
         {
             InitializeComponent();
         }
 
-        private void FrmSplash_Load(object sender, EventArgs e)
-        {
-            timer1.Start();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
+        private void BtnOK_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
         }
