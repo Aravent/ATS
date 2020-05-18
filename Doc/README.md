@@ -37,9 +37,6 @@ Testing Studio Sample 的构建考虑了可扩展性，从仪器驱动到数据�
 如果您对扩展包程序开发有疑问，请创建issue进行提问。
 如果您迫切想得到回复，请发送邮件至[zlxu@aiofm.ac.cn](mailto://zlxu@aiofm.ac.cn)我将尽快恢复您的问题。
 
-5/13/2020
-
----
 
 # 入门
 
@@ -113,15 +110,9 @@ Testing Studio Sample 的构建考虑了可扩展性，从仪器驱动到数据�
 
 我们提供了大量示例扩展，您可以从中进行调整，其中一些示例包含详细的指南以解释源代码。您可以在扩展指南列表或[apc-extension-samples]()存储库中找到所有示例和指南。
 
-5/19/2020
-
----
 
 # 使用扩展包
 
-5/13/2020
-
----
 
 # 扩展接口
 
@@ -130,14 +121,14 @@ Testing Studio Sample 的构建考虑了可扩展性，从仪器驱动到数据�
 在TS Sample中，扩展包利用扩展接口与框架进行数据交换，为此我们定义了以下四种数据交换的方式：
 |名称|方向|继承&调用|方法|
 |---|---|---|---|
-|读取|框架 < 模块|ICore|[PushInfo]() [Init](#init)([IPush]() push)|
-|发送|框架 > 模块|ICore|void [Receive](#receive)([PushData]() pushData)|
-|获取|模块 < 框架|IPush|[MethodData]() [GetMethodList](#getMethodList)()<br>[ModuleData]() [GetDataList](#getDataList)()<br>object [GetData](#getData)(int pid, [PushType]() type, string name)|
-|推送|模块 > 框架|IPush|int [Pid](#pid) {get; set;}<br>void [PushData](#pushData)(int pid, [PushData]() pushData)<br>void [PushNotice](#pushNotice)(int pid, [PushNotice]() pushNotice)|
+|读取|框架 < 模块|ICore|[PushInfo]() [Init](#init-方法)([IPush]() push)|
+|发送|框架 > 模块|ICore|void [Receive](#receive-方法)([PushData]() pushData)|
+|获取|模块 < 框架|IPush|[MethodData]() [GetMethodList](#getmethodlist-方法)()<br>[ModuleData]() [GetDataList](#getdatalist-方法)()<br>object [GetData](#getdata-方法)(int pid, [PushType]() type, string name)|
+|推送|模块 > 框架|IPush|int [Pid](#pid-属性) {get; set;}<br>void [PushData](#pushdata-方法)(int pid, [PushData]() pushData)<br>void [PushNotice](#pushnotice-方法)(int pid, [PushNotice]() pushNotice)|
 
 ## 属性
 
-### <a id="pid">PID 属性</a>
+### PID 属性
 
 #### 语法
 
@@ -167,7 +158,7 @@ Testing Studio Sample 的构建考虑了可扩展性，从仪器驱动到数据�
 
 ## 方法
 
-### <a id="init">Init 方法</a>
+### Init 方法
 
 #### 语法
 
@@ -205,7 +196,7 @@ Testing Studio Sample 的构建考虑了可扩展性，从仪器驱动到数据�
 
 无
 
-### <a id="receive">Receive 方法</a>
+### Receive 方法
 
 #### 语法
 
@@ -246,7 +237,7 @@ Testing Studio Sample 的构建考虑了可扩展性，从仪器驱动到数据�
 [System.Windows.MessageBox](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.messagebox?view=netframework-4.6)
 
 
-### <a id="getMethodList">GetMethodList 方法</a>
+### GetMethodList 方法
 
 #### 语法
 
@@ -272,7 +263,7 @@ Testing Studio Sample 的构建考虑了可扩展性，从仪器驱动到数据�
 
 无
 
-### <a id="getDataList">GetDataList 方法</a>
+### GetDataList 方法
 
 #### 语法
 
@@ -298,7 +289,7 @@ Testing Studio Sample 的构建考虑了可扩展性，从仪器驱动到数据�
 
 无
 
-### <a id="getData">GetData 方法</a>
+### GetData 方法
 
 #### 语法
 
@@ -340,7 +331,7 @@ Testing Studio Sample 的构建考虑了可扩展性，从仪器驱动到数据�
 
 [System.String](https://docs.microsoft.com/zh-cn/dotnet/api/system.string?view=netframework-4.6)
 
-### <a id="pushData">PushData 方法</a>
+### PushData 方法
 
 #### 语法
 
@@ -375,7 +366,7 @@ Testing Studio Sample 的构建考虑了可扩展性，从仪器驱动到数据�
 
 [System.Int32](https://docs.microsoft.com/zh-cn/dotnet/api/system.int32?view=netframework-4.6)
 
-### <a id="pushNotice">PushNotice 方法</a>
+### PushNotice 方法
 
 #### 语法
 
@@ -418,14 +409,8 @@ Testing Studio Sample 的构建考虑了可扩展性，从仪器驱动到数据�
 
 # UI扩展
 
-5/13/2020
-
----
 
 # 数据交互
 
-5/13/2020
-
----
 
 # 参考
